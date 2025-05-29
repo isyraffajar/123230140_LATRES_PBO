@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package latihanresponsi;
+import latihanresponsi.view.ViewApotek;
+
 
 /**
  *
  * @author ACER
  */
-public class LatihanResponsi {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new ViewApotek();
     }
     
 }
