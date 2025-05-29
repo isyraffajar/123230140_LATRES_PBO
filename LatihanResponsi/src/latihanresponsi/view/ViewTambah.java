@@ -1,55 +1,71 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package latihanresponsi.view;
 
 import javax.swing.*;
+import latihanresponsi.controller.ControllerApotek;
 
 public class ViewTambah extends JFrame {
+    private JTextField tfNamaPelanggan = new JTextField();
+    private JTextField tfNamaObat = new JTextField();
+    private JTextField tfHargaSatuan = new JTextField();
+    private JTextField tfJumlahBeli = new JTextField();
+    private JButton btnTambah = new JButton("Tambah");
 
-    // Komponen form dipakai di controller
-    public JTextField tfNamaPelanggan = new JTextField();
-    public JTextField tfNamaObat = new JTextField();
-    public JTextField tfHargaSatuan = new JTextField();
-    public JTextField tfJumlahBeli = new JTextField();
-    public JButton btnTambah = new JButton("Tambah");
-    
-    //Komponen form label
-    JLabel lblNamaPelanggan = new JLabel("Nama Pelanggan:");
-    JLabel lblNamaObat = new JLabel("Nama Obat:");
-    JLabel lblHargaSatuan = new JLabel("Harga Satuan:");
-    JLabel lblJumlahBeli = new JLabel("Jumlah Beli:");
+    private ControllerApotek controller;
 
-    public ViewTambah() {
-        setTitle("Aplikasi Apotek");
-        setSize(400, 300);//atur ukuran Frame
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // atur posisi frame di tengah
-        setLayout(null);//layout manual
-        
-       // setBounds(X, Y, Width, Height), X dari kiri, Y dari atas      
-        lblNamaPelanggan.setBounds(20, 20, 120, 25);
+    public ViewTambah(ControllerApotek controller) {
+        this.controller = controller;
+
+        setTitle("Tambah Transaksi");
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLayout(null);
+
+        add(new JLabel("Nama Pelanggan:")).setBounds(20, 20, 120, 25);
         tfNamaPelanggan.setBounds(150, 20, 200, 25);
-        lblNamaObat.setBounds(20, 60, 120, 25);
-        tfNamaObat.setBounds(150, 60, 200, 25);
-        lblHargaSatuan.setBounds(20, 100, 120, 25);
-        tfHargaSatuan.setBounds(150, 100, 200, 25);     
-        lblJumlahBeli.setBounds(20, 140, 120, 25);
-        tfJumlahBeli.setBounds(150, 140, 200, 25);
-        btnTambah.setBounds(120, 190, 150, 30);
-
-        // Tambah ke frame
-        add(lblNamaPelanggan);
         add(tfNamaPelanggan);
-        add(lblNamaObat);
+
+        add(new JLabel("Nama Obat:")).setBounds(20, 60, 120, 25);
+        tfNamaObat.setBounds(150, 60, 200, 25);
         add(tfNamaObat);
-        add(lblHargaSatuan);
+
+        add(new JLabel("Harga Satuan:")).setBounds(20, 100, 120, 25);
+        tfHargaSatuan.setBounds(150, 100, 200, 25);
         add(tfHargaSatuan);
-        add(lblJumlahBeli);
+
+        add(new JLabel("Jumlah Beli:")).setBounds(20, 140, 120, 25);
+        tfJumlahBeli.setBounds(150, 140, 200, 25);
         add(tfJumlahBeli);
+
+        btnTambah.setBounds(120, 190, 150, 30);
         add(btnTambah);
 
-        setVisible(true);
+        btnTambah.addActionListener(e -> {
+            if (validateInput()) {
+                // Kirim data ke controller
+                controller.tambahData(
+                    tfNamaPelanggan.getText(),
+                    tfNamaObat.getText(),
+                    Integer.parseInt(tfHargaSatuan.getText()),
+                    Integer.parseInt(tfJumlahBeli.getText())
+                );
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Mohon isi data dengan benar.");
+            }
+        });
     }
+
+    private boolean validateInput() {
+        try {
+            if (tfNamaPelanggan.getText().isEmpty() || tfNamaObat.getText().isEmpty())
+                return false;
+            Integer.parseInt(tfHargaSatuan.getText());
+            Integer.parseInt(tfJumlahBeli.getText());
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+    
 }

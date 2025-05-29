@@ -4,7 +4,6 @@
  */
 package latihanresponsi.model;
 
-import latihanresponsi.model.Koneksi;
 import java.sql.Connection;
 
 public class TesKoneksi {
@@ -13,9 +12,9 @@ public class TesKoneksi {
         Connection conn = koneksiDB.getKoneksi();
 
         if (conn != null) {
-            System.out.println("✔ Koneksi sukses ke database!");
+            System.out.println("Koneksi sukses");
         } else {
-            System.out.println("✖ Gagal terkoneksi ke database!");
+            System.out.println("Koneksi Gagal");
         }
     }
 }

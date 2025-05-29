@@ -1,22 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package latihanresponsi;
+
+import latihanresponsi.model.ModelApotek;
 import latihanresponsi.view.ViewApotek;
+import latihanresponsi.controller.ControllerApotek;
 
-
-/**
- *
- * @author ACER
- */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        new ViewApotek();
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            ModelApotek model = new ModelApotek();
+            ViewApotek view = new ViewApotek();
+            ControllerApotek controller = new ControllerApotek(view);
+            view.setVisible(true);
+        });
     }
-    
 }

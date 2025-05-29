@@ -1,61 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package latihanresponsi.view;
 
 import javax.swing.*;
+import latihanresponsi.controller.ControllerApotek;
 
 public class ViewEdit extends JFrame {
+    private JTextField tfNamaPelanggan = new JTextField();
+    private JTextField tfNamaObat = new JTextField();
+    private JTextField tfHargaSatuan = new JTextField();
+    private JTextField tfJumlahBeli = new JTextField();
+    private JButton btnSimpan = new JButton("Simpan");
 
-    // Komponen form dipakai di controller
-    public JTextField tfNamaPelanggan = new JTextField();
-    public JTextField tfNamaObat = new JTextField();
-    public JTextField tfHargaSatuan = new JTextField();
-    public JTextField tfJumlahBeli = new JTextField();
-    public JButton btnSimpan = new JButton("Simpan");
+    private ControllerApotek controller;
+    private int id;
 
-    // Komponen label
-    JLabel lblNamaPelanggan = new JLabel("Nama Pelanggan:");
-    JLabel lblNamaObat = new JLabel("Nama Obat:");
-    JLabel lblHargaSatuan = new JLabel("Harga Satuan:");
-    JLabel lblJumlahBeli = new JLabel("Jumlah Beli:");
+    public ViewEdit(ControllerApotek controller, int id, String namaPelanggan, String namaObat, int hargaSatuan, int jumlahBeli) {
+        this.controller = controller;
+        this.id = id;
 
-    public ViewEdit(String namaPelanggan, String namaObat, int hargaSatuan, int jumlahBeli) {
         setTitle("Edit Transaksi");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // tidak menutup aplikasi utama
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(null);
 
-        // Set posisi komponen
-        lblNamaPelanggan.setBounds(20, 20, 120, 25);
+        add(new JLabel("Nama Pelanggan:")).setBounds(20, 20, 120, 25);
         tfNamaPelanggan.setBounds(150, 20, 200, 25);
-        lblNamaObat.setBounds(20, 60, 120, 25);
-        tfNamaObat.setBounds(150, 60, 200, 25);
-        lblHargaSatuan.setBounds(20, 100, 120, 25);
-        tfHargaSatuan.setBounds(150, 100, 200, 25);
-        lblJumlahBeli.setBounds(20, 140, 120, 25);
-        tfJumlahBeli.setBounds(150, 140, 200, 25);
-        btnSimpan.setBounds(120, 190, 150, 30);
-
-        // Set isi text field dari parameter
         tfNamaPelanggan.setText(namaPelanggan);
-        tfNamaObat.setText(namaObat);
-        tfHargaSatuan.setText(String.valueOf(hargaSatuan));
-        tfJumlahBeli.setText(String.valueOf(jumlahBeli));
-
-        // Tambahkan komponen
-        add(lblNamaPelanggan);
         add(tfNamaPelanggan);
-        add(lblNamaObat);
+
+        add(new JLabel("Nama Obat:")).setBounds(20, 60, 120, 25);
+        tfNamaObat.setBounds(150, 60, 200, 25);
+        tfNamaObat.setText(namaObat);
         add(tfNamaObat);
-        add(lblHargaSatuan);
+
+        add(new JLabel("Harga Satuan:")).setBounds(20, 100, 120, 25);
+        tfHargaSatuan.setBounds(150, 100, 200, 25);
+        tfHargaSatuan.setText(String.valueOf(hargaSatuan));
         add(tfHargaSatuan);
-        add(lblJumlahBeli);
+
+        add(new JLabel("Jumlah Beli:")).setBounds(20, 140, 120, 25);
+        tfJumlahBeli.setBounds(150, 140, 200, 25);
+        tfJumlahBeli.setText(String.valueOf(jumlahBeli));
         add(tfJumlahBeli);
+
+        btnSimpan.setBounds(120, 190, 150, 30);
         add(btnSimpan);
 
-        setVisible(true);
+        btnSimpan.addActionListener(e -> {
+            if (validateInput()) {
+                controller.updateData(
+                    this.id,
+                    tfNamaPelanggan.getText(),
+                    tfNamaObat.getText(),
+                    Integer.parseInt(tfHargaSatuan.getText()),
+                    Integer.parseInt(tfJumlahBeli.getText())
+                );
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Mohon isi data dengan benar.");
+            }
+        });
+    }
+
+    private boolean validateInput() {
+        try {
+            if (tfNamaPelanggan.getText().isEmpty() || tfNamaObat.getText().isEmpty())
+                return false;
+            Integer.parseInt(tfHargaSatuan.getText());
+            Integer.parseInt(tfJumlahBeli.getText());
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }

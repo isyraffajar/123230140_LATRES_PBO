@@ -5,7 +5,12 @@
         <group>
             <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/view/ViewApotek.java</file>
             <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/Main.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/view/DashboardView.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/model/TesKoneksi.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/view/ViewEdit.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/controller/ControllerApotek.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/view/ViewTambah.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/model/Koneksi.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/123230140_LATRES_PBO/LatihanResponsi/src/latihanresponsi/model/ModelApotek.java</file>
         </group>
     </open-files>
 </project-private>
